@@ -6,8 +6,10 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:alpine
-
+      - image: cimg/sha256:01bd2a33ca24c7884677372db42ac8309c174f23c7ed30b3fe0aba5256b836e4
+        auth:
+          username: $MY_DOCKERHUB_USER
+          password: $MY_DOCKERHUB_PASS
     steps:
       - checkout
 
@@ -17,7 +19,7 @@ jobs:
 
       - run:
           name: Ejecutar imagen Docker
-          command: docker run --name getnasapi getnasapi  
+          command: docker run --name getnasapi getnasapi  $MY_APIKEY_VAR
 
       - run:
           name: Imprimir resultado en formato JSON
