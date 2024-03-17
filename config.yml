@@ -1,0 +1,59 @@
+version: 2.1
+executors:
+  docker-hub:
+    environment:
+      IMAGE_NAME: 67951926/getnasapi
+    docker:
+      - image: circleci/buildpack-deps:stretch
+jobs:
+  build:
+    executor: docker-hub
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker Image
+          command: docker build -t $IMAGE_NAME:latest .
+      - run:
+          name: Archive Docker image
+          command: docker save -o image.tar $IMAGE_NAME
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./image.tar
+  run-image:
+    executor: docker-hub
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - setup_remote_docker
+      - run:
+          name: Load archived Docker image
+          command: docker load -i /tmp/workspace/image.tar
+      - run:
+          name: Run Docker Image
+          command: docker run $IMAGE_NAME:latest $MY_APIKEY_VAR
+      - run:
+          name: Create output directory
+          command: mkdir ./output
+      - run:
+          name: Copy Neows API Json file
+          command: docker cp $IMAGE_NAME:/app/nasaResults/neowsResponse.json ./output/
+      - run:
+          name: Printing neowsResponse.json content
+          command: cat ./output/neowsResponse.json
+
+workflows:
+  version: 2
+  build-master:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+      - run-image:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
