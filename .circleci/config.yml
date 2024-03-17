@@ -10,10 +10,8 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo pre adios
-      - run: echo pre adios
-      - run: echo post adios
-
+      - run: echo Adios
+      
 workflows:
   workflow1:
     jobs:
