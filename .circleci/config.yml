@@ -13,13 +13,13 @@ jobs:
       - run: echo pre adios
       - run: echo pre adios
       - run: echo post adios
-    do-the-thing:
-      parameters:
-        my_job_param:
-          type: string
-          default: "triggered by commit"
-      steps:
-       - run: echo << parameters.my_job_param >>
+  do-the-thing:
+    parameters:
+      my_job_param:
+        type: string
+        default: "triggered by commit"
+    steps:
+     - run: echo << parameters.my_job_param >>
 
 parameters:
   my_trigger_parameter:
