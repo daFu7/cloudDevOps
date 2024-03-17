@@ -1,18 +1,21 @@
 version: 2.1
 
-parameters:
-  nombre:
-    type: string
-    default: elPocho
-
 jobs:
   saluda:
+    parameters:
+      nombre:
+        type: string
+        default: elPocho
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo Hola << pipeline.parameters.nombre >>
+      - run: echo Hola << parameters.nombre >>
 
 workflows:
   workflow1:
     jobs:
       - saluda
+  workflow2:
+    jobs:
+      - saluda:
+        nombre: Andy
