@@ -3,14 +3,3 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-jobs:
-  saluda:
-    docker:
-      image: cimg/base:stable
-    steps:
-      - run: echo hola mundo
-
-workflows:
-  hello:
-    jobs:
-      - saluda 
