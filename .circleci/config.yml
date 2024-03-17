@@ -4,22 +4,13 @@
 version: 2.1
 
 jobs:
-  build:
+  saluda:
     docker:
-      image: circleci/python:alpine
-    working_directory: .circleci/
+      image: cimg/base:stable
     steps:
-      - checkout
+      - run: echo hola mundo
 
-      - run:
-          name: Construir imagen Docker
-          command: docker build -t getnasapi .
-
-      - run:
-          name: Ejecutar imagen Docker
-          command: docker run --name getnasapi getnasapi  $MY_APIKEY_VAR
-
-      - run:
-          name: Imprimir resultado en formato JSON
-          command: docker cp getnasapi:/app/nasaResults/neowsResponse.json ./output/
-            cat ./output/neowsResponse.json
+workflows:
+  hello:
+    jobs:
+      - saluda 
