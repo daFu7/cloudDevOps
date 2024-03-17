@@ -1,0 +1,57 @@
+version: 2.1
+
+jobs:
+  saluda:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo hola mundo
+  despidete:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo pre adios
+      - run: echo pre adios
+      - run: echo post adios
+
+parameters:
+  my_trigger_parameter:
+    type: string
+    default: ""
+
+workflows:
+  workflow1:
+    jobs:
+      - saluda
+      - despidete
+  workflow2:
+    jobs:
+      - saluda
+      - despidete:
+          requires:
+            - saluda
+  workflow3:
+    jobs:
+      - saluda
+      - approval:
+          type: approval
+          requires:
+            - saluda
+      - despidete:
+          requires:
+            - approval
+
+  commit-triggered-workflow:
+    when:
+      not: << pipeline.parameters.my_trigger_parameter >>
+    jobs:
+    - do-the-thing
+
+jobs:
+  do-the-thing:
+    parameters:
+      my_job_param:
+        type: string
+        default: "triggered by commit"
+    steps:
+      - run: echo << parameters.my_job_param >>
