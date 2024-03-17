@@ -2,14 +2,23 @@
 # This is a generic template to serve as a base for your custom config
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
+
 jobs:
   saluda:
     docker:
       - image: cimg/base:stable
     steps:
       - run: echo hola mundo
+  despidete:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo pre adios
+      - run: echo pre adios
+      - run: echo post adios
 
 workflows:
   hello:
     jobs:
-      - saluda 
+      - saluda
+      - despidete
