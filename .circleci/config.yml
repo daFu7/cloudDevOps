@@ -1,13 +1,16 @@
 version: 2.1
 
 jobs:
-  saluda:
+  build:
     parameters:
-      nombre:
+      usuario:
         type: string
-        default: elPocho
+        default: 67951926
     docker:
-      - image: cimg/base:stable
+      image: cimg/base:stable
+      auth:
+        username: << parameters.usuario >>
+        password: d0ck3RFu_Hub7
     steps:
       - run: echo Hola << parameters.nombre >>
 
