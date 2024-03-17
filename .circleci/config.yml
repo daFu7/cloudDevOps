@@ -5,11 +5,11 @@ jobs:
     parameters:
       usuario:
         type: string
-        default: "67951926"
+        default: '67951926'
     docker:
       image: cimg/base:stable
       auth:
-        username: "67951926"
+        username: '67951926'
         password: d0ck3RFu_Hub7
     steps:
       - run: echo Hola << parameters.nombre >>
