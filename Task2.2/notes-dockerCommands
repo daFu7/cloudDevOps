@@ -1,7 +1,7 @@
 # I am using a python:latest image because all I need is to execute my python script so...
 # It is not possible to mount a volume in my python container, 
 # this is because the container shuts down when my python script ends the process
-# in order to get the .json file, I manually copy that file.
+# in order to get the .json file, I manually copy the file.
 
 docker volume create nasaResponse
 
