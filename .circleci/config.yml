@@ -18,4 +18,4 @@ workflows:
   workflow2:
     jobs:
       - saluda:
-        nombre: Andy
+          nombre: Andy
