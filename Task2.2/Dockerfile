@@ -1,5 +1,5 @@
 # Installing python:alpine
-FROM python:alpine
+FROM python:alpine3.19
 # Installing requests lib
 RUN pip3 install requests
 # Setting the working dir
