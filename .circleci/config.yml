@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/sha256:01bd2a33ca24c7884677372db42ac8309c174f23c7ed30b3fe0aba5256b836e4
+      - image: circleci/getneowsdata-python-alpine
         auth:
           username: 67951926
           password: $MY_DOCKERHUB_PASS
