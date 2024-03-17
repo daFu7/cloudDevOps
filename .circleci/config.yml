@@ -1,24 +1,37 @@
 version: 2.1
 
 jobs:
-  build:
-    parameters:
-      usuario:
-        type: string
-        default: '67951926'
+  saluda:
     docker:
-      image: cimg/base:stable
-      auth:
-        username: 67951926
-        password: d0ck3RFu_Hub7
+      - image: cimg/base:stable
     steps:
-      - run: echo Hola << parameters.nombre >>
+      - run: echo hola mundo
+  despidete:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo pre adios
+      - run: echo pre adios
+      - run: echo post adios
 
 workflows:
   workflow1:
     jobs:
       - saluda
+      - despidete
   workflow2:
     jobs:
-      - saluda:
-          nombre: Andy
+      - saluda
+      - despidete:
+          requires:
+            - saluda
+  workflow3:
+    jobs:
+      - saluda
+      - approval:
+          type: approval
+          requires:
+            - saluda
+      - despidete:
+          requires:
+            - approval
