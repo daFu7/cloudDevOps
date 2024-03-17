@@ -1,40 +1,18 @@
-# Couldn't automatically generate a config from your source code.
-# This is a generic template to serve as a base for your custom config
-# See: https://circleci.com/docs/configuration-reference
 version: 2.1
+
+parameters:
+  nombre:
+    type: string
+    default: elPocho
 
 jobs:
   saluda:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo hola mundo
-  despidete:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo pre adios
-      - run: echo pre adios
-      - run: echo post adios
+      - run: echo Hola << pipeline.parameters.nombre >>
 
 workflows:
   workflow1:
     jobs:
       - saluda
-      - despidete
-  workflow2:
-    jobs:
-      - saluda
-      - despidete:
-          requires:
-            - saluda
-  workflow3:
-    jobs:
-      - saluda
-      - approval:
-          type: approval
-          requires:
-            - saluda
-      - despidete:
-          requires:
-            - approval
