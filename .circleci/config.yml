@@ -5,7 +5,7 @@ jobs:
     parameters:
       usuario:
         type: string
-        default: 67951926
+        default: "67951926"
     docker:
       image: cimg/base:stable
       auth:
