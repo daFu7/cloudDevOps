@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: cimg/sha256:01bd2a33ca24c7884677372db42ac8309c174f23c7ed30b3fe0aba5256b836e4
         auth:
-          username: $MY_DOCKERHUB_USER
+          username: 67951926
           password: $MY_DOCKERHUB_PASS
     steps:
       - checkout
