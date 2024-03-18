@@ -14,17 +14,7 @@ jobs:
       - setup_remote_docker
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "get_data.py" }}
-      - run:
-          name: Create Dockerfile
-          command: |
-            echo FROM python:alpine > Dockerfile
-            echo RUN pip3 install requests >> Dockerfile
-            echo WORKDIR /app/nasaResults >> Dockerfile
-            echo COPY get_data.py /app/nasaResults >> Dockerfile
-            echo ENTRYPOINT ["python","get_data.py"] >> Dockerfile
-      - run:
-          name: Cat Dockerfile
-          command: cat Dockerfile
+          key: deps1-{{ .Branch }}-{{ checksum "Dockerfile" }}
       - run:
           name: Build Docker Image
           command: docker build -t $IMAGE_NAME:latest .
