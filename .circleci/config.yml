@@ -38,9 +38,6 @@ jobs:
           name: Create output directory
           command: mkdir ./output
       - run:
-          name: show neowsResponse.json location
-          command: docker exec $IMAGE_NAME find neowsResponse.json
-      - run:
           name: Copy Neows API Json file
           command: docker cp $IMAGE_NAME:./neowsResponse.json ./output/
       - run:
