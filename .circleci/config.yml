@@ -36,9 +36,10 @@ jobs:
           command: docker run $IMAGE_NAME:latest $MY_APIKEY_VAR
       - run:
           name: show current path
-          command: pwd
-          command: ls
-          command: ls -a
+          command: |
+            pwd
+            ls
+            ls -a
       - run:
           name: Create output directory
           command: mkdir ./output
