@@ -41,12 +41,6 @@ jobs:
           name: show current path
           command: pwd
       - run:
-          name: list current path
-          command: ls
-      - run:
-          name: find neowsResponse
-          command: find neowsResponse.json
-      - run:
           name: Copy Neows API Json file
           command: docker cp $IMAGE_NAME:latest:/app/nasaResults/neowsResponse.json ./output/
       - run:
