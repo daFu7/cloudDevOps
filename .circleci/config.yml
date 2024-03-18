@@ -12,8 +12,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "get_data.py" }}
       - run:
           name: Build Docker Image
           command: docker build -t $IMAGE_NAME:latest .
