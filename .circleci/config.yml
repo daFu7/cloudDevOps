@@ -35,17 +35,20 @@ jobs:
           name: Run Docker Image
           command: docker run $IMAGE_NAME:latest $MY_APIKEY_VAR
       - run:
-          name: show current path
-          command: |
-            pwd
-            ls
-            ls -a
-      - run:
           name: Create output directory
           command: mkdir ./output
+            - run:
+          name: show current path
+          command: pwd
+      - run:
+          name: list current path
+          command: ls
+      - run:
+          name: show dockers
+          command: docker ps -a
       - run:
           name: Copy Neows API Json file
-          command: docker cp $IMAGE_NAME:app/nasaResults/neowsResponse.json ./output/
+          command: docker cp $IMAGE_NAME:/app/nasaResults/neowsResponse.json ./output/
       - run:
           name: Printing neowsResponse.json content
           command: cat ./output/neowsResponse.json
