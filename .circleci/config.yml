@@ -39,7 +39,7 @@ jobs:
           command: mkdir ./output
       - run:
           name: Copy Neows API Json file
-          command: docker cp $IMAGE_NAME:/app/nasaResults/neowsResponse.json ./output/
+          command: docker cp $IMAGE_NAME:app/nasaResults/neowsResponse.json ./output/
       - run:
           name: Printing neowsResponse.json content
           command: cat ./output/neowsResponse.json
