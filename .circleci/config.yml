@@ -45,8 +45,7 @@ jobs:
           command: cat ./output/neowsResponse.json
 
 workflows:
-  version: 2
-  build-master:
+  workflow1:
     jobs:
       - build:
           filters:
@@ -55,6 +54,6 @@ workflows:
       - run-image:
           requires:
             - build
-          filters:
-            branches:
-              only: master
+              filters:
+                branches:
+                  only: master
