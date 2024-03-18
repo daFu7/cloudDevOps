@@ -1,5 +1,5 @@
 # First build the docker image from the Dockerfile
-docker build -t getnasapi .
+docker build -t 67951926/getnasapi:latest -f Dockerfile .
 
 # Second, push the docker image to the Docker Registry
 docker login
