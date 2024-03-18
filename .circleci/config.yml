@@ -33,18 +33,19 @@ jobs:
           command: docker load -i /tmp/workspace/image.tar
       - run:
           name: Run Docker Image
-          command: docker run $IMAGE_NAME:latest $MY_APIKEY_VAR
+          command: docker run --name getnasapi $IMAGE_NAME $MY_APIKEY_VAR
       - run:
           name: Create output directory
-          command: |
-            mkdir ./output
-            cd output/
+          command: mkdir ./output
+      - run:
+          name: Collecting container ID from name
+          command: docker ps -aqf "name=getnasapi"
       - run:
           name: Copy Neows API Json file
-          command: docker cp $IMAGE_NAME:/app/nasaResults/neowsResponse.json .
+          command: docker cp $(docker ps -aqf "name=getnasapi"):/app/nasaResults/neowsResponse.json ./output/
       - run:
           name: Printing neowsResponse.json content
-          command: cat neowsResponse.json
+          command: cat ./output/neowsResponse.json
 
 workflows:
   workflow1:
