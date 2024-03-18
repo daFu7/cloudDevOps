@@ -36,13 +36,15 @@ jobs:
           command: docker run $IMAGE_NAME:latest $MY_APIKEY_VAR
       - run:
           name: Create output directory
-          command: mkdir ./output
+          command: |
+            mkdir ./output
+            cd output/
       - run:
           name: Copy Neows API Json file
-          command: docker cp $IMAGE_NAME:./neowsResponse.json ./output/
+          command: docker cp $IMAGE_NAME:/app/nasaResults/neowsResponse.json .
       - run:
           name: Printing neowsResponse.json content
-          command: cat ./output/neowsResponse.json
+          command: cat neowsResponse.json
 
 workflows:
   workflow1:
