@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Create output directory
           command: mkdir ./output
-            - run:
+      - run:
           name: show current path
           command: pwd
       - run:
