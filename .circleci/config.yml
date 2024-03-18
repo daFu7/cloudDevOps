@@ -21,6 +21,9 @@ jobs:
             echo COPY get_data.py /app/nasaResults >> Dockerfile
             echo ENTRYPOINT ["python","get_data.py"] >> Dockerfile'
       - run:
+          name: Cat Dockerfile
+          command: cat Dockerfile
+      - run:
           name: Build Docker Image
           command: docker build -t $IMAGE_NAME:latest .
       - run:
