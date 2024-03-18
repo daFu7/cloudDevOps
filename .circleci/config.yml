@@ -1,4 +1,4 @@
-# CI/CD Task 2.3
+# CI/CD Task 2.3 :)
 version: 2.1
 executors:
   docker-hub:
