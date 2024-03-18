@@ -47,13 +47,7 @@ jobs:
 workflows:
   workflow1:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+      - build
       - run-image:
           requires:
             - build
-          filters:
-            branches:
-              only: master
