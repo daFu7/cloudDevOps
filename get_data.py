@@ -26,6 +26,7 @@ def fetch_and_save_response_NeowsBrowse(apiKey, output_filename):
             json.dump(response_json, json_file, indent=4)
         
         print(f"Response saved to {output_filename}")
+        print(response_json)
     else:
         print(f"Failed to fetch data from API. Status code: {response.status_code}")
 
