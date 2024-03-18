@@ -15,11 +15,11 @@ jobs:
       - run:
           name: Create Dockerfile
           command: |
-            echo FROM python:alpine > Dockerfile ' \
+            echo FROM python:alpine > Dockerfile
             echo RUN pip3 install requests >> Dockerfile
             echo WORKDIR /app/nasaResults >> Dockerfile
             echo COPY get_data.py /app/nasaResults >> Dockerfile
-            echo ENTRYPOINT ["python","get_data.py"] >> Dockerfile'
+            echo ENTRYPOINT ["python","get_data.py"] >> Dockerfile
       - run:
           name: Cat Dockerfile
           command: cat Dockerfile
